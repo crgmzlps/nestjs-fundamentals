@@ -26,6 +26,16 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## CLI Commands
+
+```bash
+$ nest --help
+$ nest g controller coffees
+$ nest g co coffees
+$ nest g co coffees --no-spec #without test file
+$ nest g co coffees--dry-run #simulate
+```
+
 ## Installation
 
 ```bash
