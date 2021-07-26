@@ -17,26 +17,29 @@ import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 export class CoffeesController {
   constructor(private readonly coffeesService: CoffeesService) {}
   @Get()
-  findAll(/* @Query() paginationQuery */) {
+  async findAll(/* @Query() paginationQuery */) {
     // const { limit, offset } = paginationQuery;
     return this.coffeesService.findAll();
   }
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  async findOne(@Param('id') id: number) {
     console.log(typeof id);
     return this.coffeesService.findOne(id);
   }
   @Post()
-  create(@Body() createCoffeeDto: CreateCoffeeDto) {
+  async create(@Body() createCoffeeDto: CreateCoffeeDto) {
     return this.coffeesService.create(createCoffeeDto);
   }
   @Patch(':id')
-  update(@Param('id') id: number, @Body() updateCoffeeDto: UpdateCoffeeDto) {
+  async update(
+    @Param('id') id: number,
+    @Body() updateCoffeeDto: UpdateCoffeeDto,
+  ) {
     return this.coffeesService.update(id, updateCoffeeDto);
   }
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  remove(@Param('id') id: number) {
+  async remove(@Param('id') id: number) {
     return this.coffeesService.remove(id);
   }
 }
