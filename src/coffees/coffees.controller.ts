@@ -6,7 +6,6 @@ import {
   HttpCode,
   HttpStatus,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
 } from '@nestjs/common';
@@ -23,7 +22,8 @@ export class CoffeesController {
     return this.coffeesService.findAll();
   }
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  findOne(@Param('id') id: number) {
+    console.log(typeof id);
     return this.coffeesService.findOne(id);
   }
   @Post()
@@ -31,15 +31,12 @@ export class CoffeesController {
     return this.coffeesService.create(createCoffeeDto);
   }
   @Patch(':id')
-  update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateCoffeeDto: UpdateCoffeeDto,
-  ) {
+  update(@Param('id') id: number, @Body() updateCoffeeDto: UpdateCoffeeDto) {
     return this.coffeesService.update(id, updateCoffeeDto);
   }
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  remove(@Param('id', ParseIntPipe) id: number) {
+  remove(@Param('id') id: number) {
     return this.coffeesService.remove(id);
   }
 }
