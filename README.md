@@ -34,6 +34,8 @@ $ nest g controller coffees
 $ nest g co coffees
 $ nest g co coffees --no-spec #without test file
 $ nest g co coffees--dry-run #simulate
+$ nest g service coffees
+$ nest g s coffees
 ```
 
 ## Installation
