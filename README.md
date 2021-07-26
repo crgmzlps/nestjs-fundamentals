@@ -37,6 +37,8 @@ $ nest g co coffees--dry-run #simulate
 $ nest g service coffees
 $ nest g s coffees
 $ nest g mo coffees
+$ nest g class coffees/dto/create-coffee.dto --no-spec
+$ nest g class coffees/dto/update-coffee.dto --no-spec
 ```
 
 ## Installation
