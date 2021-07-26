@@ -36,6 +36,7 @@ $ nest g co coffees --no-spec #without test file
 $ nest g co coffees--dry-run #simulate
 $ nest g service coffees
 $ nest g s coffees
+$ nest g mo coffees
 ```
 
 ## Installation
