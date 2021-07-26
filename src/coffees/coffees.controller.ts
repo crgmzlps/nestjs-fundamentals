@@ -1,21 +1,20 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
-  HttpCode,
-  HttpStatus,
   Param,
   ParseIntPipe,
+  Patch,
   Post,
-  Res,
+  Put,
 } from '@nestjs/common';
-import { Response } from 'express';
 
 @Controller('coffees')
 export class CoffeesController {
   @Get()
-  findAll(@Res() response: Response) {
-    response.status(200).send('This action returns all coffees');
+  findAll() {
+    return 'This action returns all coffees';
   }
   @Get('flavors')
   flavors() {
@@ -26,8 +25,15 @@ export class CoffeesController {
     return `This action returns #${id} coffee`;
   }
   @Post()
-  @HttpCode(HttpStatus.GONE) //410
   create(@Body() body) {
     return body;
+  }
+  @Patch(':id')
+  update(@Param('id', ParseIntPipe) id: number, @Body() body) {
+    return `This action updates #${id} coffee`;
+  }
+  @Delete(':id')
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return `This action removes #${id} coffee`;
   }
 }
