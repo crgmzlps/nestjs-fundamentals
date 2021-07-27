@@ -18,6 +18,9 @@ export class Coffee {
   @Column()
   brand: string;
 
+  @Column({ default: 0 })
+  recommendations: number;
+
   @ManyToMany((type) => Flavor, (favor) => favor.coffees, {
     cascade: ['insert', 'update'],
   })

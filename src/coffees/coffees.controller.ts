@@ -24,7 +24,6 @@ export class CoffeesController {
   }
   @Get(':id')
   async findOne(@Param('id') id: number) {
-    console.log(typeof id);
     return this.coffeesService.findOne(id);
   }
   @Post()
@@ -42,5 +41,11 @@ export class CoffeesController {
   @HttpCode(HttpStatus.NO_CONTENT)
   async remove(@Param('id') id: number) {
     return this.coffeesService.remove(id);
+  }
+  @Post('recommend')
+  async recommendCoffee(@Body('id') id: number) {
+    const coffee = await this.coffeesService.findOne(id);
+    await this.coffeesService.recommendCoffee(coffee);
+    return { message: 'recommendation done' };
   }
 }
