@@ -15,7 +15,7 @@ import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
       password: 'postgres',
       database: 'iluvcoffee',
       autoLoadEntities: true,
-      // synchronize: true,
+      synchronize: true,
     }),
     CoffeesModule,
     CoffeeRatingModule,
