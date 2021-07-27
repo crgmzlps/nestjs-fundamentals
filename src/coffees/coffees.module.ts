@@ -7,12 +7,24 @@ import { CoffeesService } from './coffees.service';
 import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity';
 
+@Injectable()
+export class CoffeeBrandsFactory {
+  create() {
+    return ['buddy brew', 'nescafe'];
+  }
+}
 @Module({
   imports: [TypeOrmModule.forFeature([Coffee, Flavor, Event])],
   controllers: [CoffeesController],
   providers: [
     CoffeesService,
-    { provide: COFFEE_BRANDS, useFactory: () => ['buddy brew', 'nescafe'] },
+    CoffeeBrandsFactory,
+    {
+      provide: COFFEE_BRANDS,
+      inject: [CoffeeBrandsFactory],
+      useFactory: (coffeeBrandsFactory: CoffeeBrandsFactory) =>
+        coffeeBrandsFactory.create(),
+    },
   ],
   exports: [CoffeesService],
 })
