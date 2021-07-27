@@ -9,7 +9,12 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      envFilePath: `${process.env.NODE_ENV || ''}.env`, // useful for test.env development.env
+      //envFilePath: 'dev.env',
+      //envFilePath: ['dev.env','test.env'], // precedence is important
+      // ignoreEnvFile: true // fot production
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DATABASE_HOST,
