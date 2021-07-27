@@ -39,6 +39,14 @@ $ nest g s coffees
 $ nest g mo coffees
 $ nest g class coffees/dto/create-coffee.dto --no-spec
 $ nest g class coffees/dto/update-coffee.dto --no-spec
+$ npx typeorm migration --help
+$ npx typeorm migration:create -n CoffeeRefactor
+$ npm run build
+$ npx typeorm migration:show
+$ npx typeorm migration:run
+$ npx typeorm migration:generate -n SchemaSync
+$ npx typeorm migration:revert
+
 ```
 
 ## Running PostgreSQL

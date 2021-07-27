@@ -14,7 +14,7 @@ import { CoffeesModule } from './coffees/coffees.module';
       password: 'postgres',
       database: 'iluvcoffee',
       autoLoadEntities: true,
-      synchronize: true,
+      // synchronize: true,
     }),
     CoffeesModule,
   ],
