@@ -31,9 +31,9 @@ export class CoffeesService {
   ) {
     console.log(this.coffeesBrands);
     const databaseHost = this.configService.get<string>(
-      'DATABASE_HOST',
-      '0.0.0.0',
-    ); // set 0.0.0.0 as default value
+      'database.host',
+      '127.0.0.1',
+    );
     console.log(databaseHost);
   }
 
