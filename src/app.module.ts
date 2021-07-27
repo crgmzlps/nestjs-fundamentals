@@ -19,6 +19,11 @@ import { CoffeesModule } from './coffees/coffees.module';
     CoffeesModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    {
+      provide: AppService,
+      useClass: AppService,
+    },
+  ],
 })
 export class AppModule {}
