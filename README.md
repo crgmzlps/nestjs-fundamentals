@@ -46,7 +46,8 @@ $ npx typeorm migration:show
 $ npx typeorm migration:run
 $ npx typeorm migration:generate -n SchemaSync
 $ npx typeorm migration:revert
-
+$ nest g mo coffee-rating
+$ nest g s coffee-rating
 ```
 
 ## Running PostgreSQL
