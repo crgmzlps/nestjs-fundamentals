@@ -6,14 +6,15 @@ import { CoffeesModule } from './coffees/coffees.module';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
+import * as Joi from '@hapi/joi';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `${process.env.NODE_ENV || ''}.env`, // useful for test.env development.env
-      //envFilePath: 'dev.env',
-      //envFilePath: ['dev.env','test.env'], // precedence is important
-      // ignoreEnvFile: true // fot production
+      validationSchema: Joi.object({
+        DATABASE_HOST: Joi.required(),
+        DATABASE_PORT: Joi.number().default(5432),
+      }),
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
