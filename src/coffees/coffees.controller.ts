@@ -26,6 +26,7 @@ export class CoffeesController {
   @Public()
   // @SetMetadata('isPublic', true)
   async findAll(@Query() paginationQuery: PaginationQueryDto) {
+    await new Promise((res) => setTimeout(res, 5000));
     return this.coffeesService.findAll(paginationQuery);
   }
   @Get(':id')
