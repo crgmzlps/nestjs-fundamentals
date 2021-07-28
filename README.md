@@ -53,6 +53,7 @@ $ nest g guard common/guards/api-key
 $ nest g interceptor common/interceptors/wrap-response
 $ nest g interceptor common/interceptors/timeout
 $ nest g pipe common/pipes/parse-int
+$ nest g middleware common/middleware/logging
 ```
 
 ## Test Guard
