@@ -48,6 +48,7 @@ $ npx typeorm migration:generate -n SchemaSync
 $ npx typeorm migration:revert
 $ nest g mo coffee-rating
 $ nest g s coffee-rating
+$ nest g filter common/filters/http-exception
 ```
 
 ## Running PostgreSQL
