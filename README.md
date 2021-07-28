@@ -50,6 +50,7 @@ $ nest g mo coffee-rating
 $ nest g s coffee-rating
 $ nest g filter common/filters/http-exception
 $ nest g guard common/guards/api-key
+$ nest g interceptor common/interceptors/wrap-response
 ```
 
 ## Test Guard
