@@ -49,6 +49,13 @@ $ npx typeorm migration:revert
 $ nest g mo coffee-rating
 $ nest g s coffee-rating
 $ nest g filter common/filters/http-exception
+$ nest g guard common/guards/api-key
+```
+
+## Test Guard
+
+```bash
+$ http localhost:3000/coffees/1 authorization:secret
 ```
 
 ## Running PostgreSQL
