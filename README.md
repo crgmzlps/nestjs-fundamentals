@@ -52,6 +52,7 @@ $ nest g filter common/filters/http-exception
 $ nest g guard common/guards/api-key
 $ nest g interceptor common/interceptors/wrap-response
 $ nest g interceptor common/interceptors/timeout
+$ nest g pipe common/pipes/parse-int
 ```
 
 ## Test Guard
