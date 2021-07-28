@@ -9,6 +9,11 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import {
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiResponse,
+} from '@nestjs/swagger';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
@@ -20,6 +25,8 @@ export class CoffeesController {
   findAll() {
     return this.coffeesService.findAll();
   }
+  @ApiOkResponse({ status: 200, description: 'Coffee found' })
+  @ApiNotFoundResponse({ status: 404, description: 'Coffee not found' })
   @Get(':id')
   findOne(@Param('id') id: number) {
     console.log(typeof id);
@@ -33,6 +40,7 @@ export class CoffeesController {
   update(@Param('id') id: number, @Body() updateCoffeeDto: UpdateCoffeeDto) {
     return this.coffeesService.update(id, updateCoffeeDto);
   }
+  @ApiResponse({ status: 204, description: 'No Content' })
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('id') id: number) {
