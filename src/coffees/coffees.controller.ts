@@ -10,6 +10,7 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { Protocol } from '../common/decorators/protocol.decorator';
 import { Public } from '../common/decorators/public.decorator';
 import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
@@ -23,8 +24,12 @@ export class CoffeesController {
   @Get()
   @Public()
   // @SetMetadata('isPublic', true)
-  async findAll(@Query() paginationQuery: PaginationQueryDto) {
+  async findAll(
+    @Protocol('test') protocol: string,
+    @Query() paginationQuery: PaginationQueryDto,
+  ) {
     // await new Promise((res) => setTimeout(res, 5000));
+    console.log(protocol);
     return this.coffeesService.findAll(paginationQuery);
   }
   @Get(':id')
