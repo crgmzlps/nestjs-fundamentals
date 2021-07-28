@@ -30,12 +30,6 @@ import { APP_PIPE } from '@nestjs/core';
     DatabaseModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    /*  {
-      provide: APP_PIPE,
-      useClass: ValidationPipe,
-    }, */
-  ],
+  providers: [AppService],
 })
 export class AppModule {}
