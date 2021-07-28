@@ -17,8 +17,7 @@ import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 export class CoffeesController {
   constructor(private readonly coffeesService: CoffeesService) {}
   @Get()
-  findAll(/* @Query() paginationQuery */) {
-    // const { limit, offset } = paginationQuery;
+  findAll() {
     return this.coffeesService.findAll();
   }
   @Get(':id')
