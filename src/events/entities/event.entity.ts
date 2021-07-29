@@ -6,7 +6,7 @@ export class Event extends Document {
   @Prop()
   type: string;
 
-  @Prop()
+  @Prop({ index: true })
   name: string;
 
   @Prop({ type: SchemaTypes.Mixed })
@@ -14,3 +14,9 @@ export class Event extends Document {
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);
+/*
+EventSchema.index({
+  name: 1, // order asc
+  type: -1, // order desc
+});
+*/
