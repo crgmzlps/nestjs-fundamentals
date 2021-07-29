@@ -8,7 +8,9 @@ import { CoffeesModule } from './coffees/coffees.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot(process.env.MONGO_URI),
+    MongooseModule.forRoot(process.env.MONGO_URI, {
+      useFindAndModify: false,
+    }),
     CoffeesModule,
   ],
   controllers: [AppController],

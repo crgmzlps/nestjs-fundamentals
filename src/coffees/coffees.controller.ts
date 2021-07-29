@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -9,6 +10,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { isValidObjectId } from 'mongoose';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
@@ -22,8 +24,10 @@ export class CoffeesController {
     return this.coffeesService.findAll();
   }
   @Get(':id')
-  findOne(@Param('id') id: number) {
-    console.log(typeof id);
+  findOne(@Param('id') id: string) {
+    if (!isValidObjectId(id)) {
+      throw new BadRequestException('Invalid ID');
+    }
     return this.coffeesService.findOne(id);
   }
   @Post()
@@ -31,12 +35,12 @@ export class CoffeesController {
     return this.coffeesService.create(createCoffeeDto);
   }
   @Patch(':id')
-  update(@Param('id') id: number, @Body() updateCoffeeDto: UpdateCoffeeDto) {
+  update(@Param('id') id: string, @Body() updateCoffeeDto: UpdateCoffeeDto) {
     return this.coffeesService.update(id, updateCoffeeDto);
   }
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  remove(@Param('id') id: number) {
+  remove(@Param('id') id: string) {
     return this.coffeesService.remove(id);
   }
 }
