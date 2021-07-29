@@ -44,4 +44,15 @@ export class CoffeesController {
   remove(@Param('id') id: string) {
     return this.coffeesService.remove(id);
   }
+  @Post('recommend')
+  async recommendCoffee(@Body('id') id: string) {
+    if (!isValidObjectId(id)) {
+      throw new BadRequestException('Invalid ID');
+    }
+    const coffee = await this.coffeesService.findOne(id);
+    await this.coffeesService.recommendCoffee(coffee);
+    return {
+      message: 'recommendation done',
+    };
+  }
 }
