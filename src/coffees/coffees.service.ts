@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Coffee } from './entities/coffee.entity';
@@ -10,8 +11,9 @@ export class CoffeesService {
   constructor(
     @InjectModel(Coffee.name) private readonly coffeeModel: Model<Coffee>,
   ) {}
-  async findAll() {
-    return this.coffeeModel.find().exec();
+  async findAll(paginationQueryDto?: PaginationQueryDto) {
+    const { limit, offset } = paginationQueryDto;
+    return this.coffeeModel.find().skip(offset).limit(limit).exec();
   }
   async findOne(id: string) {
     const coffee = await this.coffeeModel.findOne({ _id: id }).exec();
